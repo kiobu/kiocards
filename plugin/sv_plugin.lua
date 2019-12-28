@@ -1,4 +1,7 @@
 function kdc:PlayerCanUseDoor(player, entity)
+
+    local cwEntity = Clockwork.entity;
+
 	if (cwEntity:GetOwner(door) and !cwPly:HasDoorAccess(player, door)) then
 		return false;
 	end;
