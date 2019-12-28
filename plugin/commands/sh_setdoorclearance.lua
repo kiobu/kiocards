@@ -16,6 +16,8 @@ function COMMAND:OnRun(player, arguments)
                 Clockwork.player:Notify(player, "No clearance level was given.");
             else 
             kdc:SetDoorClearance(door, arguments[1]);
+            Clockwork.player:Notify(player, "Clearance level set!");
+            timer.Simple(2, function() kdc:SaveDoorClearances() end);
             end;
         else
             Clockwork.player:Notify(player, "Door is too far away!");
