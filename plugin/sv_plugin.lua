@@ -10,7 +10,7 @@ function kdc:PlayerCanUseDoor(player, entity)
 		return false;
     end;
     
-    local clearance = entity:GetNetworkedString("Clearance");
+    local clearance = cwEntity:GetNetworkedString("Clearance");
 
     if (!clearance or clearance == '') then
         return true;
