@@ -5,8 +5,8 @@
 
 local ITEM = Clockwork.item:New();
 
-ITEM.name = "Level 3 Card";
-ITEM.uniqueID = "kiocard_clearance_3"; -- Do not change.
+ITEM.name = "Level 0 Card";
+ITEM.uniqueID = "kiocard_clearance_0"; -- Do not change.
 ITEM.model = "models/hunter/plates/plate025.mdl";
 ITEM.weight = 0.8;
 ITEM.access = "X";

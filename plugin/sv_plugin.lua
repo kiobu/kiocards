@@ -1,34 +1,27 @@
 function kdc:PlayerCanUseDoor(player, door)
     print("Function ran!");
     if (Clockwork.entity:GetOwner(door) and !Clockwork.player:HasDoorAccess(player, door)) then
-        print("Uncaught.");
 		return false;
 	end;
 	
     if (Clockwork.entity:IsDoorFalse(door)) then
-        print("Uncaught false door.");
 		return false;
     end;
     
     local clearance = door:GetNetworkedString("Clearance");
 
     if (!clearance or clearance == '') then
-        print("No clearance for this door.");
     else
         local pass = false;
         for i = 0,5,1 do 
             if (player:HasItemByID("kiocard_clearance_"..i) && i >= tonumber(clearance)) then
-                print("Player has clearance.");
                 pass = true;
                 break;
             else
-                print("Player does not have clearance.");
                 pass = false;
             end;
         end;
-        print("Returning val"..tostring(pass));
         if (!pass) then
-            door:Fire("setanimation","close")
             return false;
         else 
             return true
@@ -73,37 +66,36 @@ function kdc:LoadDoorClearances()
     end;
 end;
 
+-- Called when an entity fires an event to this entity.
+    -- Prevents button doors from opening without proper clearance.
 function kdc:AcceptInput(ent, input, activator, caller)
-    print("Input", ent, input, activator, caller)
     if (!Clockwork.entity:IsDoor(ent)) then
       return;
     end;
-    print(1)
+    
     if (input != "Toggle") then
       return;
     end;
-    print(2)
+    
     if (!IsValid(activator) or !activator:IsPlayer()) then
       return;
     end;
-    print(3)
+    
     if (!IsValid(caller) or caller:GetClass() != "func_button") then
       return;
     end;
-    print(4)
+    
     local contactEntity = ent;
     
     for k, v in pairs(ent:GetChildren()) do
-      print(5)
       if (v:GetClass() == "prop_dynamic") then
         contactEntity = v;
-        print(6, contactEntity)
+        
         break;
       end;
     end;
     
-    if (!kdc:PlayerCanUseDoor(activator, contactEntity)) then
-      print(7)
-      return false;
+    if (kdc:PlayerCanUseDoor(activator, contactEntity) == false) then
+      return true;
     end;
 end;

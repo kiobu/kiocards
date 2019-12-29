@@ -7,7 +7,7 @@ local ITEM = Clockwork.item:New();
 
 ITEM.name = "Level 4 Card";
 ITEM.uniqueID = "kiocard_clearance_4"; -- Do not change.
-ITEM.model = "models/gibs/shield_scanner_gib1.mdl";
+ITEM.model = "models/hunter/plates/plate025.mdl";
 ITEM.weight = 0.8;
 ITEM.access = "X";
 ITEM.category = "Clearance";
