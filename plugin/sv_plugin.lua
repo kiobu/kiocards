@@ -72,3 +72,27 @@ function kdc:LoadDoorClearances()
         MsgC(Color(127, 255, 127, 255), "[Kiocards] No door clearances were found for this map.\n")
     end;
 end;
+
+function kdc:AcceptInput(ent, input, activator, caller)
+    print("Input", ent, input, activator, caller)
+    if (!Clockwork.entity:IsDoor(ent)) then
+      return;
+    end;
+    print(1)
+    if (input != "Toggle") then
+      return;
+    end;
+    print(2)
+    if (!IsValid(activator) or !activator:IsPlayer()) then
+      return;
+    end;
+    print(3)
+    if (!IsValid(caller) or caller:GetClass() != "func_button") then
+      return;
+    end;
+    print(4)
+    if (!kdc:PlayerCanUseDoor(activator, ent)) then
+      print(5)
+      return false;
+    end;
+  end;

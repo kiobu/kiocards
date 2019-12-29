@@ -1,5 +1,5 @@
-local COMMAND = Clockwork.command:New("SetDoorClearance"); 
-COMMAND.tip = "Sets a door's clearance level."; 
+local COMMAND = Clockwork.command:New("DoorGetClearance"); 
+COMMAND.tip = "Gets a door's clearance level."; 
 COMMAND.flags = CMD_DEFAULT;
 
 -- Called when the command has been run. 
@@ -12,12 +12,10 @@ function COMMAND:OnRun(player, arguments)
 
     if ( IsValid(door) and Clockwork.entity:IsDoor(door) ) then
         if (target:GetPos():Distance( player:GetShootPos() ) <= 64) then
-            if (!arguments[1]) then
-                Clockwork.player:Notify(player, "No clearance level was given.");
+            if (!door:GetNetworkedString("Clearance") or (door:GetNetworkedString("Clearance") == '')) then
+                Clockwork.player:Notify(player, "There is no clearance level for this door.");
             else 
-            kdc:SetDoorClearance(door, arguments[1]);
-            Clockwork.player:Notify(player, "Clearance level set!");
-            timer.Simple(2, function() kdc:SaveDoorClearances() end);
+            Clockwork.player:Notify(player, "Clearance Level: " .. door:GetNetworkedString("Clearance"));
             end;
         else
             Clockwork.player:Notify(player, "Door is too far away!");
