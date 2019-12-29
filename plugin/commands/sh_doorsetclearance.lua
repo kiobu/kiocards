@@ -1,6 +1,6 @@
 local COMMAND = Clockwork.command:New("DoorSetClearance"); 
 COMMAND.tip = "Sets a door's clearance level."; 
-COMMAND.flags = "s";
+COMMAND.access = "s";
 
 -- Called when the command has been run. 
 

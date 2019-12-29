@@ -1,5 +1,8 @@
+function kdc:PlayFailureSound(door)
+    sound.Play("Resource/warning.wav", door:GetPos())
+end;
+
 function kdc:PlayerCanUseDoor(player, door)
-    print("Function ran!");
     if (Clockwork.entity:GetOwner(door) and !Clockwork.player:HasDoorAccess(player, door)) then
 		return false;
 	end;
@@ -22,6 +25,7 @@ function kdc:PlayerCanUseDoor(player, door)
             end;
         end;
         if (!pass) then
+            kdc:PlayFailureSound(door)
             return false;
         else 
             return true
