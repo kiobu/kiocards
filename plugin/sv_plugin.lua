@@ -91,8 +91,19 @@ function kdc:AcceptInput(ent, input, activator, caller)
       return;
     end;
     print(4)
-    if (!kdc:PlayerCanUseDoor(activator, ent)) then
+    local contactEntity = ent;
+    
+    for k, v in pairs(ent:GetChildren()) do
       print(5)
+      if (v:GetClass() == "prop_dynamic") then
+        contactEntity = v;
+        print(6, contactEntity)
+        break;
+      end;
+    end;
+    
+    if (!kdc:PlayerCanUseDoor(activator, contactEntity)) then
+      print(7)
       return false;
     end;
-  end;
+end;
