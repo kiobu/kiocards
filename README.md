@@ -15,7 +15,7 @@ To reset all door clearances on the map, simply navigate to your server's *data/
 
 ### Planned features
 
-- Show the character's clearance level below their name/physical desc.
+~~- Show the character's clearance level below their name/physical desc.~~ <- **Completed**
 - Force all doors with a clearance level to close after a certain amount of time.
 
 ### Thanks
